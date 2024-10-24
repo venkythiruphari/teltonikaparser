@@ -6,6 +6,7 @@ package teltonikaparser
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/filipkroca/b2n"
 )
@@ -22,7 +23,8 @@ func DecodeElements(bs *[]byte, start int, codecID byte) ([]Element, int, error)
 		// AVL Data IO element total IO count length	1 Byte	2 Bytes
 		// AVL Data IO element IO count length	1 Byte	2 Bytes
 		// AVL Data IO element AVL ID length	1 Byte	2 Bytes
-		codecLenDel = 2
+		log.Printf("codecID: 0x8e codecLenDel: %v and codecID: %v", codecLenDel, codecID)
+		codecLenDel = 1
 	}
 	// parse number of elements and prepare array
 	if codecID == 0x8e {
