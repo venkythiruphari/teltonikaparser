@@ -53,8 +53,6 @@ github.com/envoyproxy/protoc-gen-validate v0.1.0/go.mod h1:iSmxcyjqTsJpI2R4NaDN7
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/filipkroca/b2n v0.0.0-20190805132448-22fb58c69d13 h1:lMUO34eQVril9b541ukr3GVFQd5Pq0vqW2UYDwMaPZU=
 github.com/filipkroca/b2n v0.0.0-20190805132448-22fb58c69d13/go.mod h1:T3yLU0Uo5tiZKq8qKocFNiXRfP+woXS4U6JvhonHcKY=
-github.com/filipkroca/teltonikaparser v0.0.0-20221014211009-24bbb6460c5e h1:L6TwPrS0SfeyIehJPKesRhR/A2mfQOyBse4qxUZ7CqI=
-github.com/filipkroca/teltonikaparser v0.0.0-20221014211009-24bbb6460c5e/go.mod h1:SzwyyZMCuG791uj8o+oPIDuSHz7Iu0xnZPJfIa0ZkjU=
 github.com/franela/goblin v0.0.0-20200105215937-c9ffbefa60db/go.mod h1:7dvUGVsVBjqR7JHJk0brhHOZYGmfBYOrK0ZhYMEtBr4=
 github.com/franela/goreq v0.0.0-20171204163338-bcd34c9993f8/go.mod h1:ZhphrRTfi2rbfLwlschooIH4+wKKDR4Pdxhh+TRoA20=
 github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMoQvtojpjFo=

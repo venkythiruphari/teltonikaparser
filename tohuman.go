@@ -10,7 +10,7 @@ import (
 	"log"
 
 	"github.com/filipkroca/b2n"
-	"github.com/filipkroca/teltonikaparser/teltonikajson"
+	"github.com/venkythiruphari/teltonikaparser/teltonikajson" // Update this line
 )
 
 // HAvlData represent human readable set of a pointer to an AvlEncodeKey Decoding key and a pointer to IO element with RAW data
@@ -49,13 +49,13 @@ func (h *HumanDecoder) Human(el *Element, device string) (*HAvlData, error) {
 
 	// check if Element is valid
 	if !((*el).Length > 0 && (*el).IOID > 0 && len((*el).Value) > 0) {
-		return nil, fmt.Errorf("Unable to decode empty element")
+		return nil, fmt.Errorf("unable to decode empty element")
 	}
 
 	// find decode key and pair it
 	avl, ok := h.elements[device][(*el).IOID]
 	if !ok {
-		return nil, fmt.Errorf("Unknown element %v", (*el).IOID)
+		return nil, fmt.Errorf("unknown element %v", (*el).IOID)
 	}
 
 	// return pointer to merged struct with decode key AvlEncodeKey and data Element
@@ -98,7 +98,7 @@ autoDecode:
 				} else if codec == "FM36" {
 					codec = "FM11XY"
 				} else {
-					return nil, fmt.Errorf("Unable to GetFinalValue() %v", err)
+					return nil, fmt.Errorf("unable to GetFinalValue() %v", err)
 				}
 				goto autoDecode
 			} else if val != nil {
@@ -158,63 +158,63 @@ func (h *HAvlData) GetFinalValue() (interface{}, error) {
 
 	if h.AvlEncodeKey.FinalConversion == "toBool" {
 		if h.AvlEncodeKey.Bytes != "1" || h.AvlEncodeKey.Type != "Unsigned" || len(h.Element.Value) != 1 {
-			return nil, fmt.Errorf("Unable to convert %vBytes long parametr, %vBytes real long parametr to Bool %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
+			return nil, fmt.Errorf("unable to convert %vBytes long parametr, %vBytes real long parametr to Bool %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
 		}
 		return (h.Element.Value[0] == 0x01), nil
 	}
 
 	if h.AvlEncodeKey.FinalConversion == "toUint8" {
 		if h.AvlEncodeKey.Bytes != "1" || h.AvlEncodeKey.Type != "Unsigned" || len(h.Element.Value) != 1 {
-			return nil, fmt.Errorf("Unable to convert %vBytes long parametr, %vBytes real long parametr to Uint8 %v, original value %x", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName, h.Element.Value)
+			return nil, fmt.Errorf("unable to convert %vBytes long parametr, %vBytes real long parametr to Uint8 %v, original value %x", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName, h.Element.Value)
 		}
 		return b2n.ParseBs2Uint8(&h.Element.Value, 0)
 	}
 
 	if h.AvlEncodeKey.FinalConversion == "toUint16" {
 		if h.AvlEncodeKey.Bytes != "2" || h.AvlEncodeKey.Type != "Unsigned" || len(h.Element.Value) != 2 {
-			return nil, fmt.Errorf("Unable to convert %vBytes long parametr, %vBytes real long parametr to Uint16 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
+			return nil, fmt.Errorf("unable to convert %vBytes long parametr, %vBytes real long parametr to Uint16 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
 		}
 		return b2n.ParseBs2Uint16(&h.Element.Value, 0)
 	}
 
 	if h.AvlEncodeKey.FinalConversion == "toUint32" {
 		if h.AvlEncodeKey.Bytes != "4" || h.AvlEncodeKey.Type != "Unsigned" || len(h.Element.Value) != 4 {
-			return nil, fmt.Errorf("Unable to convert %vBytes long parametr, %vBytes real long parametr to Uint32 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
+			return nil, fmt.Errorf("unable to convert %vBytes long parametr, %vBytes real long parametr to Uint32 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
 		}
 		return b2n.ParseBs2Uint32(&h.Element.Value, 0)
 	}
 
 	if h.AvlEncodeKey.FinalConversion == "toUint64" {
 		if h.AvlEncodeKey.Bytes != "8" || h.AvlEncodeKey.Type != "Unsigned" || len(h.Element.Value) != 8 {
-			return nil, fmt.Errorf("Unable to convert %vBytes long parametr, %vBytes real long parametr to Uint64 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
+			return nil, fmt.Errorf("unable to convert %vBytes long parametr, %vBytes real long parametr to Uint64 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
 		}
 		return b2n.ParseBs2Uint64(&h.Element.Value, 0)
 	}
 
 	if h.AvlEncodeKey.FinalConversion == "toInt8" {
 		if h.AvlEncodeKey.Bytes != "1" || h.AvlEncodeKey.Type != "Signed" || len(h.Element.Value) != 1 {
-			return nil, fmt.Errorf("Unable to convert %vBytes long parametr, %vBytes real long parametr to Int8 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
+			return nil, fmt.Errorf("unable to convert %vBytes long parametr, %vBytes real long parametr to Int8 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
 		}
 		return b2n.ParseBs2Int8TwoComplement(&h.Element.Value, 0)
 	}
 
 	if h.AvlEncodeKey.FinalConversion == "toInt16" {
 		if h.AvlEncodeKey.Bytes != "2" || h.AvlEncodeKey.Type != "Signed" || len(h.Element.Value) != 2 {
-			return nil, fmt.Errorf("Unable to convert %vBytes long parametr, %vBytes real long parametr to Int16 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
+			return nil, fmt.Errorf("unable to convert %vBytes long parametr, %vBytes real long parametr to Int16 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
 		}
 		return b2n.ParseBs2Int16TwoComplement(&h.Element.Value, 0)
 	}
 
 	if h.AvlEncodeKey.FinalConversion == "toInt32" {
 		if h.AvlEncodeKey.Bytes != "4" || h.AvlEncodeKey.Type != "Signed" || len(h.Element.Value) != 4 {
-			return nil, fmt.Errorf("Unable to convert %vBytes long parametr, %vBytes real long parametr to Int32 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
+			return nil, fmt.Errorf("unable to convert %vBytes long parametr, %vBytes real long parametr to Int32 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
 		}
 		return b2n.ParseBs2Int32TwoComplement(&h.Element.Value, 0)
 	}
 
 	if h.AvlEncodeKey.FinalConversion == "toInt64" {
 		if h.AvlEncodeKey.Bytes != "8" || h.AvlEncodeKey.Type != "Signed" || len(h.Element.Value) != 8 {
-			return nil, fmt.Errorf("Unable to convert %vBytes long parametr, %vBytes real long parametr, to Int64 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
+			return nil, fmt.Errorf("unable to convert %vBytes long parametr, %vBytes real long parametr, to Int64 %v", h.AvlEncodeKey.Bytes, len(h.Element.Value), h.AvlEncodeKey.PropertyName)
 		}
 		return b2n.ParseBs2Int64TwoComplement(&h.Element.Value, 0)
 	}
