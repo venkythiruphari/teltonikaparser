@@ -1,4 +1,4 @@
-module teltonikaparser
+module github.com/venkythiruphari/teltonikaparser
 
 go 1.23.0
 
